@@ -1,5 +1,5 @@
 package com.arnold.autolibrary.model;
 
-public class User {
-
+public enum Role {
+    LIBRARIAN,TEACHER
 }
