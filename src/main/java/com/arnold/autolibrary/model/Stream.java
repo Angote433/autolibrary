@@ -7,13 +7,13 @@ import jakarta.persistence.*;
 public class Stream {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int streamID;
+    private int streamId;
 
     @Column(nullable = false , length = 10)
     private String streamName;
 
     @ManyToOne
-    @JoinColumn(name="classID",nullable = false)
+    @JoinColumn(name="class_id",nullable = false)
     private SchoolClass schoolClass;
 
     @Column(nullable = false)
@@ -23,7 +23,7 @@ public class Stream {
     private boolean isActive;
 
     @ManyToOne
-    @JoinColumn(name = "teacherID")
+    @JoinColumn(name = "teacher_id")
     private UserDetails teacher;
 
     public Stream(){}
@@ -33,8 +33,8 @@ public class Stream {
         this.capacity = capacity;
         this.isActive = isActive;
     }
-    public int getStreamID() { return streamID; }
-    public void setStreamID(int streamID) { this.streamID = streamID; }
+    public int getStreamID() { return streamId; }
+    public void setStreamID(int streamId) { this.streamId = streamId; }
 
     public String getStreamName() { return streamName; }
     public void setStreamName(String streamName) { this.streamName = streamName; }

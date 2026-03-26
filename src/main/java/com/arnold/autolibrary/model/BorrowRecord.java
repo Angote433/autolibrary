@@ -5,18 +5,18 @@ import jakarta.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@Table(name ="borrowrecord" )
+@Table(name ="borrow_record" )
 public class BorrowRecord {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int borrowID;
+    private int borrowId;
 
     @ManyToOne
-    @JoinColumn(name = "bookID",nullable = false)
+    @JoinColumn(name = "book_id",nullable = false)
     private BookCopy bookCopy;
 
     @ManyToOne
-    @JoinColumn(name = "studentID",nullable = false)
+    @JoinColumn(name = "student_id",nullable = false)
     private Student student;
 
     @Column(nullable = false)
@@ -27,7 +27,7 @@ public class BorrowRecord {
     private LocalDate dateReturned;
 
     @ManyToOne
-    @JoinColumn(name="issuedBy")
+    @JoinColumn(name="issued_by")
     private UserDetails issuedBy;
 
     @Enumerated(EnumType.STRING)
@@ -46,8 +46,8 @@ public class BorrowRecord {
         this.status = BorrowStatus.ACTIVE;
     }
 
-    public int getBorrowID() { return borrowID; }
-    public void setBorrowID(int borrowID) { this.borrowID = borrowID; }
+    public int getBorrowID() { return borrowId; }
+    public void setBorrowID(int borrowId) { this.borrowId = borrowId; }
 
     public BookCopy getBookCopy() { return bookCopy; }
     public void setBookCopy(BookCopy bookCopy) { this.bookCopy = bookCopy; }

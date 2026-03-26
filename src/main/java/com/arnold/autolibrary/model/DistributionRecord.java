@@ -5,18 +5,18 @@ import jakarta.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "distributionrecord")
+@Table(name = "distribution_record")
 public class DistributionRecord {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int distributionID;
+    private int distributionId;
 
     @ManyToOne
-    @JoinColumn(name="bookID",nullable = false)
+    @JoinColumn(name="book_id",nullable = false)
     private BookCopy bookCopy;
 
     @ManyToOne
-    @JoinColumn(name = "studentID",nullable = false)
+    @JoinColumn(name = "student_id",nullable = false)
     private Student student;
 
     @Column(nullable = false)
@@ -27,7 +27,7 @@ public class DistributionRecord {
     private int academicYear;
 
     @ManyToOne
-    @JoinColumn(name = "distributedBy")
+    @JoinColumn(name = "distributed_by")
     private UserDetails distributedBy;
 
     @Enumerated(EnumType.STRING)
@@ -46,8 +46,8 @@ public class DistributionRecord {
         this.status = DistributionStatus.DISTRIBUTED;
     }
 
-    public int getDistributionID() { return distributionID; }
-    public void setDistributionID(int distributionID) { this.distributionID = distributionID; }
+    public int getDistributionID() { return distributionId; }
+    public void setDistributionID(int distributionId) { this.distributionId = distributionId; }
 
     public BookCopy getBookCopy() { return bookCopy; }
     public void setBookCopy(BookCopy bookCopy) { this.bookCopy = bookCopy; }

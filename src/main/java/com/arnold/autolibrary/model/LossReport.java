@@ -5,18 +5,18 @@ import jakarta.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "lossreport")
+@Table(name = "loss_report")
 public class LossReport {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int reportID;
+    private int reportId;
 
     @ManyToOne
-    @JoinColumn(name="copyID",nullable = false)
+    @JoinColumn(name="copy_id",nullable = false)
     private BookCopy bookCopy;
 
     @ManyToOne
-    @JoinColumn(name="studentID",nullable = false)
+    @JoinColumn(name="student_id",nullable = false)
     private Student student;
 
     @Column(nullable = false)
@@ -49,8 +49,8 @@ public class LossReport {
         this.resolutionStatus = ResolutionStatus.PENDING;
     }
 
-    public int getReportID() { return reportID; }
-    public void setReportID(int reportID) { this.reportID = reportID; }
+    public int getReportID() { return reportId; }
+    public void setReportID(int reportId) { this.reportId = reportId; }
 
     public BookCopy getBookCopy() { return bookCopy; }
     public void setBookCopy(BookCopy bookCopy) { this.bookCopy = bookCopy; }

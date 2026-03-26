@@ -4,11 +4,11 @@ import jakarta.persistence.*;
 
 import java.time.Year;
 @Entity
-@Table(name = "schoolclass")
+@Table(name = "school_class")
 public class SchoolClass {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int classID;
+    private int classId;
 
     @Column(nullable = false,length = 50)
     private String className;
@@ -26,8 +26,8 @@ public class SchoolClass {
         this.gradeLevel=gradeLevel;
         this.academicYear = academicYear;
     }
-    public int getClassID(){return classID;}
-    public void setClassID(int classID){this.classID = classID;}
+    public int getClassID(){return classId;}
+    public void setClassID(int classId){this.classId = classId;}
 
     public String getClassName(){return className;}
     public void setClassName(String className){this.className = className;}

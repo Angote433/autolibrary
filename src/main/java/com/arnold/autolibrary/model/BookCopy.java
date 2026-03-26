@@ -6,14 +6,14 @@ import java.time.LocalDate;
 
 
 @Entity
-@Table(name = "bookcopy")
+@Table(name = "book_copy")
 public class BookCopy {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int bookID;
+    private int bookId;
 
     @ManyToOne
-    @JoinColumn(name="detailsID",nullable = false)
+    @JoinColumn(name="details_id",nullable = false)
     private BookDetails bookDetails;
 
     @Column(nullable = false,unique = true, length = 50)
@@ -39,8 +39,8 @@ public class BookCopy {
         this.isActive = true;
     }
 
-    public int getBookID() { return bookID; }
-    public void setBookID(int bookID) { this.bookID = bookID; }
+    public int getBookID() { return bookId; }
+    public void setBookID(int bookId) { this.bookId = bookId; }
 
     public BookDetails getBookDetails() { return bookDetails; }
     public void setBookDetails(BookDetails bookDetails) { this.bookDetails = bookDetails; }

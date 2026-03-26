@@ -6,11 +6,11 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name="userdetails")
+@Table(name="user_details")
 public class UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int userID;
+    private int userId;
 
     @Column(nullable = false , length = 100)
     private String fullName;
@@ -26,14 +26,14 @@ public class UserDetails {
     private Role role;
 
     @ManyToOne
-    @JoinColumn(name="streamID")
+    @JoinColumn(name="stream_id")
     private Stream stream;
 
     @Column(nullable = false)
     private boolean isActive;
 
     @ManyToOne
-    @JoinColumn(name="createdBy")
+    @JoinColumn(name="created_by")
     private UserDetails createdBy;
 
     @Column(nullable = false)
@@ -53,8 +53,8 @@ public class UserDetails {
         this.isActive = isActive;
     }
 
-    public int getUserID() { return userID; }
-    public void setUserID(int userID) { this.userID = userID; }
+    public int getUserID() { return userId; }
+    public void setUserID(int userId) { this.userId = userId; }
 
     public String getFullName() { return fullName; }
     public void setFullName(String fullName) { this.fullName = fullName; }

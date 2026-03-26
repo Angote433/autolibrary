@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int studentID;
+    private int studentId;
 
     @Column(nullable = false , unique = true,length = 20)
     private String admissionNumber;
@@ -18,7 +18,7 @@ public class Student {
     private String fullName;
 
     @ManyToOne
-    @JoinColumn(name = "streamID",nullable = false)
+    @JoinColumn(name = "stream_id",nullable = false)
     private Stream stream;
 
     @Column(nullable = false)
@@ -28,7 +28,7 @@ public class Student {
     private boolean isActive;
 
     @ManyToOne
-    @JoinColumn(name="createdBy")
+    @JoinColumn(name="created_by")
     private UserDetails createdBy;
 
     @Column(nullable = false)
@@ -49,8 +49,8 @@ public class Student {
         this.isActive = true;
     }
 
-    public int getStudentID() { return studentID; }
-    public void setStudentID(int studentID) { this.studentID = studentID; }
+    public int getStudentID() { return studentId; }
+    public void setStudentID(int studentId) { this.studentId = studentId; }
 
     public String getAdmissionNumber() { return admissionNumber; }
     public void setAdmissionNumber(String admissionNumber) { this.admissionNumber = admissionNumber; }

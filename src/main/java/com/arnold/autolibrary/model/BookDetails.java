@@ -5,11 +5,11 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name="bookdetails")
+@Table(name="book_details")
 public class BookDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int detailsID;
+    private int detailsId;
 
     @Column(nullable = false,length = 150 )
     private String titleName;
@@ -43,8 +43,8 @@ public class BookDetails {
         this.copies = 0;
     }
 
-    public int getDetailsID() { return detailsID; }
-    public void setDetailsID(int detailsID) { this.detailsID = detailsID; }
+    public int getDetailsID() { return detailsId; }
+    public void setDetailsID(int detailsId) { this.detailsId = detailsId; }
 
     public String getTitleName() { return titleName; }
     public void setTitleName(String titleName) { this.titleName = titleName; }
