@@ -16,5 +16,7 @@ public interface StudentRepo extends JpaRepository<Student,Integer> {
     boolean existsByAdmissionNumber(String admissionNo);
 
 
+    List<Student> findByStreamStreamIdAndIsActive(int streamId, boolean b);
+
 
 }
