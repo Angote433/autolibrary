@@ -15,4 +15,5 @@ public interface BookDetailsRepo extends JpaRepository<BookDetails,Integer> {
 
 
 
+
 }

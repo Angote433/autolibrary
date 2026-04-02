@@ -12,6 +12,9 @@ public class SchoolClassService {
     @Autowired
     SchoolClassRepository schoolClassRepository;
     public SchoolClass addClass(SchoolClass schoolClass){
+        SchoolClass existing = schoolClassRepository.findByGradeLevelAndAcademicYear(
+                schoolClass.getGradeLevel(),schoolClass.getAcademicYear()
+        );
         return schoolClassRepository.save(schoolClass);
 
     }
