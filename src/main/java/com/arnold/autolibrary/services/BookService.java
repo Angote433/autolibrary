@@ -85,6 +85,9 @@ public class BookService {
     }
 
 
-
-
+    public BookCopy getCopyById(int copyId) {
+        return bookCopyRepo.findById(copyId).orElseThrow(
+                ()->new RuntimeException("Book copy not found")
+        );
+    }
 }
