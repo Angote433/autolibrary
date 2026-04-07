@@ -23,4 +23,5 @@ public class SchoolClassService {
         return schoolClassRepository.findAll();
     }
 
+
 }

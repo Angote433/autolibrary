@@ -16,9 +16,11 @@ public interface StreamRepo extends JpaRepository<Stream,Integer> {
   Optional<Stream> findByTeacher(UserDetails teacher);
 
   Stream getStreamByStreamId(int streamId);
+  List<Stream>findStreamsBySchoolClass_ClassId(int classId);
 
 
-  boolean existsByStreamNameAndSchoolClass(String streamName, SchoolClass schoolClass);;
+  boolean existsByStreamNameAndSchoolClass(String streamName, SchoolClass schoolClass);
+
 
 
 }

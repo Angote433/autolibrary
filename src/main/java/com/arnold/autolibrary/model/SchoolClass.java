@@ -26,8 +26,8 @@ public class SchoolClass {
         this.gradeLevel=gradeLevel;
         this.academicYear = academicYear;
     }
-    public int getClassID(){return classId;}
-    public void setClassID(int classId){this.classId = classId;}
+    public int getClassId(){return classId;}
+    public void setClassId(int classId){this.classId = classId;}
 
     public String getClassName(){return className;}
     public void setClassName(String className){this.className = className;}

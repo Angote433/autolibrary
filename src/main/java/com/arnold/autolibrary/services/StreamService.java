@@ -19,11 +19,13 @@ public class StreamService {
     @Autowired
     private UserDetailsRepo userDetailsRepo;
     //in a class
+
     public Stream createStream(Stream stream){
         //teacher manages only one stream
         //check if assigned another stream
         if(stream.getTeacher() != null){
-
+            streamRepo.findByTeacher(stream.getTeacher()).ifPresent(existingStream
+            ->{throw new RuntimeException("This teacher is already assigned to another stream");});
 
         }
         return streamRepo.save(stream);
@@ -52,6 +54,9 @@ public class StreamService {
 
     public List<Stream> getAllStreams(){
         return streamRepo.findAll();
+    }
+    public List<Stream>getBySchoolClass(int classId){
+        return streamRepo.findStreamsBySchoolClass_ClassId(classId);
     }
 
     public Stream deactivateStream(int streamId){
