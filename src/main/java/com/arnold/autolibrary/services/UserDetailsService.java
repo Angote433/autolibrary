@@ -6,6 +6,7 @@ import com.arnold.autolibrary.model.UserDetails;
 import com.arnold.autolibrary.repo.StreamRepo;
 import com.arnold.autolibrary.repo.UserDetailsRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,12 +18,19 @@ public class UserDetailsService {
 
     @Autowired
     StreamRepo streamRepo;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
 
     public UserDetails createUser(UserDetails user){
         //username to be unique
         if(userDetailsRepo.existsByUserName(user.getUserName())){
             throw new RuntimeException("Username already exists");
         }
+
+        user.setPasswordHash(
+                passwordEncoder.encode(user.getPasswordHash())
+        );
 
         user.setActive(true);
         return userDetailsRepo.save(user);
