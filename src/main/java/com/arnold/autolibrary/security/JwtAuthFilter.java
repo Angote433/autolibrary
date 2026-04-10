@@ -10,54 +10,84 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
-import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
-
 import java.io.IOException;
 import java.util.List;
 
-@Controller
+@Component
 public class JwtAuthFilter extends OncePerRequestFilter {
+
     @Autowired
     private JwtUtil jwtUtil;
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
-            FilterChain filterChain) throws ServletException, IOException {
+    protected void doFilterInternal(
+            HttpServletRequest request,
+            HttpServletResponse response,
+            FilterChain filterChain)
+            throws ServletException, IOException {
+
         String authHeader = request.getHeader("Authorization");
 
-        String token = null;
-        String userName = null;
+        System.out.println("AUTH HEADER: " + authHeader);
 
-        //header exists?
-        if(authHeader != null &&  authHeader.startsWith("Bearer ")){
-            token = authHeader.substring(7);
-            try{
-                userName = jwtUtil.extractUserName(token);
-            } catch (Exception e) {}
+
+
+        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+            filterChain.doFilter(request, response);
+            return;
         }
 
-        //valid username
-        if(userName != null && SecurityContextHolder.getContext().getAuthentication() == null){
+        String token = authHeader.substring(7);
+        System.out.println("TOKEN: " + token.substring(0, 20) + "...");
 
-            try{
-                if(!jwtUtil.isTokenExpired(token)){
-                    String role = jwtUtil.extractRole(token);
+        try {
+            String username = jwtUtil.extractUserName(token);
+            System.out.println("EXTRACTED USERNAME: " + username);
 
-                    //security auth object
-                    UsernamePasswordAuthenticationToken authToken =
-                            new UsernamePasswordAuthenticationToken(userName,null
-                                    , List.of(new SimpleGrantedAuthority("ROLE "+ role)));
+            // Only set authentication if:
+            // 1. Username was extracted successfully
+            // 2. No authentication already set in this request
+            // 3.
+            if (username != null &&
+                    SecurityContextHolder.getContext()
+                            .getAuthentication() == null &&
+                    !jwtUtil.isTokenExpired(token)) {
 
-                    authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-                    SecurityContextHolder.getContext().setAuthentication(authToken);
-                }
-            }catch (Exception e) {
-                SecurityContextHolder.clearContext();
+                String role = jwtUtil.extractRole(token);
+                System.out.println("ROLE: " + role);
+
+                // Create authentication object
+                UsernamePasswordAuthenticationToken authToken =
+                        new UsernamePasswordAuthenticationToken(
+                                username,
+                                null,
+
+                                List.of(new SimpleGrantedAuthority("ROLE_" + role))
+                        );
+
+                authToken.setDetails(
+                        new WebAuthenticationDetailsSource()
+                                .buildDetails(request)
+                );
+
+
+                SecurityContextHolder.getContext()
+                        .setAuthentication(authToken);
+
+                System.out.println("AUTHENTICATION SET FOR: " + username
+                        + " with role ROLE_" + role);
+            } else {
+                System.out.println("AUTH NOT SET — username: " + username
+                        + " expired: " + jwtUtil.isTokenExpired(token));
             }
+
+        } catch (Exception e) {
+            System.out.println("JWT FILTER ERROR: " + e.getMessage());
+            SecurityContextHolder.clearContext();
         }
 
-        filterChain.doFilter(request , response);
-
+        filterChain.doFilter(request, response);
     }
 }

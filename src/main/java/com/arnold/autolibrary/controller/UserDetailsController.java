@@ -1,5 +1,6 @@
 package com.arnold.autolibrary.controller;
 
+import com.arnold.autolibrary.dto.UserResponse;
 import com.arnold.autolibrary.model.Role;
 import com.arnold.autolibrary.model.UserDetails;
 import com.arnold.autolibrary.repo.UserDetailsRepo;
@@ -23,7 +24,8 @@ public class UserDetailsController {
     public ResponseEntity<?>createUser(@RequestBody UserDetails userDetails){
         try{
             UserDetails created = userdetailsService.createUser(userDetails);
-            return ResponseEntity.status(HttpStatus.CREATED).body(created);
+            UserResponse response = new UserResponse(created.getUserID(), created.getUserName(), created.getRole());
+            return ResponseEntity.status(HttpStatus.CREATED).body(response);
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }

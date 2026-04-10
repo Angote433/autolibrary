@@ -1,7 +1,6 @@
 package com.arnold.autolibrary.util;
 
 import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
@@ -57,8 +56,7 @@ public class JwtUtil {
 
     public boolean validateToken(String token,String userName){
         String extractedUserName = extractUserName(token);
-
-        return extractedUserName.equals(userName)&& !isTokenExpired(token);
+        return extractedUserName.equals(userName)&& isTokenExpired(token);
 
     }
 

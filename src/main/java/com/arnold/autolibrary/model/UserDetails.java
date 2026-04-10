@@ -1,5 +1,6 @@
 package com.arnold.autolibrary.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -39,6 +40,8 @@ public class UserDetails {
     @Column(nullable = false)
     private LocalDateTime createdAt;
 
+
+
     @PrePersist
     protected void onCreate(){
         this.createdAt = LocalDateTime.now();
@@ -51,6 +54,11 @@ public class UserDetails {
         this.passwordHash = passwordHash;
         this.role = role;
         this.isActive = isActive;
+    }
+    public UserDetails(String userName,int userId) {
+        this.userName = userName;
+        this.userId = userId;
+
     }
 
     public int getUserID() { return userId; }
