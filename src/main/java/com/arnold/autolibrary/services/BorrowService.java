@@ -123,4 +123,7 @@ public class BorrowService {
         return borrowRepo.findByStatus(BorrowStatus.ACTIVE);
     }
 
+    public List<BorrowRecord> getOverdueBorrows() {
+        return borrowRepo.findByStatus(BorrowStatus.OVERDUE);
+    }
 }

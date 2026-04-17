@@ -53,8 +53,13 @@ public class BorrowController {
         }
     }
     @GetMapping("/active")
-    public ResponseEntity<List<BorrowRecord>>getActiveBorrrows(){
+    public ResponseEntity<List<BorrowRecord>>getActiveBorrows(){
         return ResponseEntity.ok(borrowService.getActiveBorrows());
+    }
+
+    @GetMapping("/overdue")
+    public ResponseEntity<List<BorrowRecord>>getOverdueBorrows(){
+        return ResponseEntity.ok(borrowService.getOverdueBorrows());
     }
 
 //    @GetMapping("/overdue")
