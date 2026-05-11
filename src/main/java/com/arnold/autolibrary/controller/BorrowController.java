@@ -62,11 +62,6 @@ public class BorrowController {
         return ResponseEntity.ok(borrowService.getOverdueBorrows());
     }
 
-//    @GetMapping("/overdue")
-//    public ResponseEntity<List<BorrowRecord>>getOverdueBorrows(){
-//        return ResponseEntity.ok(borrowService.getOverdueBorrows())
-//    }
-
 
     //Specific student
     @GetMapping("/student/{studentId}")

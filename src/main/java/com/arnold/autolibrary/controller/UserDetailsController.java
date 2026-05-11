@@ -24,7 +24,7 @@ public class UserDetailsController {
     public ResponseEntity<?>createUser(@RequestBody UserDetails userDetails){
         try{
             UserDetails created = userdetailsService.createUser(userDetails);
-            UserResponse response = new UserResponse(created.getUserID(), created.getUserName(), created.getRole());
+            UserResponse response = new UserResponse(created.getUserId(), created.getUserName(), created.getRole());
             return ResponseEntity.status(HttpStatus.CREATED).body(response);
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
@@ -61,9 +61,9 @@ public class UserDetailsController {
 
     //deactivate user
     @PutMapping("/{id}/deactivate")
-    public ResponseEntity<?>deactivateUser(@PathVariable int userId){
+    public ResponseEntity<?>deactivateUser(@PathVariable int id){
         try{
-            UserDetails updated = userdetailsService.deactivateUser(userId);
+            UserDetails updated = userdetailsService.deactivateUser(id);
             return ResponseEntity.ok(updated);
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
@@ -71,9 +71,9 @@ public class UserDetailsController {
     }
     //activate user
     @PutMapping("{id}/activate")
-    public ResponseEntity<?>activateUser(@PathVariable int userId){
+    public ResponseEntity<?>activateUser(@PathVariable int id){
         try{
-            UserDetails updated = userdetailsService.activateUser(userId);
+            UserDetails updated = userdetailsService.activateUser(id);
             return ResponseEntity.ok(updated);
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().body(e.getMessage());

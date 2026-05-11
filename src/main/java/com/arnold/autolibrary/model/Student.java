@@ -49,8 +49,8 @@ public class Student {
         this.isActive = true;
     }
 
-    public int getStudentID() { return studentId; }
-    public void setStudentID(int studentId) { this.studentId = studentId; }
+    public int getStudentId() { return studentId; }
+    public void setStudentId(int studentId) { this.studentId = studentId; }
 
     public String getAdmissionNumber() { return admissionNumber; }
     public void setAdmissionNumber(String admissionNumber) { this.admissionNumber = admissionNumber; }

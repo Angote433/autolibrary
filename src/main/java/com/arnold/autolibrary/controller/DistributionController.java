@@ -29,13 +29,13 @@ public class DistributionController {
     @PostMapping
     public ResponseEntity<?>distributeBook(@RequestBody DistributionRequest request) {
         try {
-            UserDetails teacher = userService.getUserById(request.getTeacherId());
+            UserDetails user = userService.getUserById(request.getUserId());
 
             DistributionRecord record = distService.distributeBook(
                     request.getQrCode(),
                     request.getStudentId(),
                     request.getAcademicYear(),
-                    teacher
+                    user
                     );
 
             return ResponseEntity.status(HttpStatus.CREATED).body(record);
@@ -95,7 +95,7 @@ public class DistributionController {
         private String qrCode;
         private int studentId;
         private int academicYear;
-        private int teacherId;
+        private int userId;
 
 
         public String getQrCode() { return qrCode; }
@@ -111,9 +111,9 @@ public class DistributionController {
             this.academicYear = academicYear;
         }
 
-        public int getTeacherId() { return teacherId; }
-        public void setTeacherId(int teacherId) {
-            this.teacherId = teacherId;
+        public int getUserId() { return userId; }
+        public void setTeacherId(int userId) {
+            this.userId = userId;
         }
     }
 

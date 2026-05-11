@@ -64,6 +64,7 @@ public class SecurityConfig {
 
                         // Login and registration are public
                         .requestMatchers("/api/auth/**").permitAll()
+                        .requestMatchers("/api/books/copies/{bookId}/qr-image").permitAll()
 
                         // Librarian only endpoints
                         .requestMatchers("/api/users/**")

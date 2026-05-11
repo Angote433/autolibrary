@@ -43,7 +43,7 @@ public class BookDetails {
         this.copies = 0;
     }
 
-    public int getDetailsID() { return detailsId; }
+    public int getDetailsId() { return detailsId; }
     public void setDetailsID(int detailsId) { this.detailsId = detailsId; }
 
     public String getTitleName() { return titleName; }

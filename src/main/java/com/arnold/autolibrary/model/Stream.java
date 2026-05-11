@@ -33,8 +33,8 @@ public class Stream {
         this.capacity = capacity;
         this.isActive = isActive;
     }
-    public int getStreamID() { return streamId; }
-    public void setStreamID(int streamId) { this.streamId = streamId; }
+    public int getStreamId() { return streamId; }
+    public void setStreamId(int streamId) { this.streamId = streamId; }
 
     public String getStreamName() { return streamName; }
     public void setStreamName(String streamName) { this.streamName = streamName; }

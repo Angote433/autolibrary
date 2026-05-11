@@ -49,8 +49,8 @@ public class LossReport {
         this.resolutionStatus = ResolutionStatus.PENDING;
     }
 
-    public int getReportID() { return reportId; }
-    public void setReportID(int reportId) { this.reportId = reportId; }
+    public int getReportId() { return reportId; }
+    public void setReportId(int reportId) { this.reportId = reportId; }
 
     public BookCopy getBookCopy() { return bookCopy; }
     public void setBookCopy(BookCopy bookCopy) { this.bookCopy = bookCopy; }

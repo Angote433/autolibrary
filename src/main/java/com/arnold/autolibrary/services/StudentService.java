@@ -4,6 +4,7 @@ import com.arnold.autolibrary.model.Stream;
 import com.arnold.autolibrary.model.Student;
 import com.arnold.autolibrary.repo.StreamRepo;
 import com.arnold.autolibrary.repo.StudentRepo;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -44,10 +45,16 @@ public class StudentService {
                 ()->new RuntimeException("Student not found" + admission)
         );
     }
-
+    @Transactional
     public Student deactivateStudent(int studentId){
         Student student = studentRepo.getById(studentId);
         student.setActive(false);
+        return studentRepo.save(student);
+    }
+    @Transactional
+    public Student activateStudent(int studentId){
+        Student student = studentRepo.getById(studentId);
+        student.setActive(true);
         return studentRepo.save(student);
     }
 
@@ -72,4 +79,7 @@ public class StudentService {
     }
 
 
+    public List<Student> getAllStudents() {
+        return studentRepo.findAll();
+    }
 }

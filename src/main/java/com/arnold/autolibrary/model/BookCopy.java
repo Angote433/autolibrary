@@ -39,7 +39,7 @@ public class BookCopy {
         this.isActive = true;
     }
 
-    public int getBookID() { return bookId; }
+    public int getBookId() { return bookId; }
     public void setBookID(int bookId) { this.bookId = bookId; }
 
     public BookDetails getBookDetails() { return bookDetails; }

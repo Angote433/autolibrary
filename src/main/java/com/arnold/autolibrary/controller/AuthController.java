@@ -55,12 +55,12 @@ public class AuthController {
         String token = jwtUtil.generateToken(
                 user.getUserName(),
                 user.getRole().name(),
-                user.getUserID()
+                user.getUserId()
         );
 
         Map<String , Object>response = new HashMap<>();
         response.put("token",token);
-        response.put("userId",user.getUserID());
+        response.put("userId",user.getUserId());
         response.put("fullName",user.getFullName());
         response.put("role",user.getRole());
         response.put("userName",user.getUserName());
@@ -68,7 +68,7 @@ public class AuthController {
         // If teacher — include their stream info
         if (user.getStream() != null) {
             response.put("streamId",
-                    user.getStream().getStreamID());
+                    user.getStream().getStreamId());
             response.put("streamName",
                     user.getStream().getStreamName());
         }

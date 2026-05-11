@@ -3,7 +3,7 @@ package com.arnold.autolibrary.controller;
 import com.arnold.autolibrary.model.BookCopy;
 import com.arnold.autolibrary.model.BookDetails;
 import com.arnold.autolibrary.services.BookService;
-import com.arnold.autolibrary.util.QrCodeGenerator;
+import com.arnold.autolibrary.util.BarCodeGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpHeaders;
@@ -12,7 +12,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.awt.print.Book;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -23,7 +22,7 @@ public class BookController {
    private  BookService bookService;
 
     @Autowired
-    private QrCodeGenerator qrGenerator;
+    private BarCodeGenerator qrGenerator;
 
     //Librarian registers book but not as a copy,a title
 

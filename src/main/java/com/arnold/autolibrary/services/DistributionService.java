@@ -77,7 +77,7 @@ public class DistributionService {
                 ()->new RuntimeException("Book not found ")
         );
 
-        DistributionRecord record = distRepo.findByBookCopyBookIdAndStatus(book.getBookID(),DistributionStatus.DISTRIBUTED)
+        DistributionRecord record = distRepo.findByBookCopyBookIdAndStatus(book.getBookId(),DistributionStatus.DISTRIBUTED)
                 .orElseThrow(()->new RuntimeException("No active distribution for this book"));
 
         record.setDateReturned(LocalDate.now());
@@ -109,11 +109,11 @@ public class DistributionService {
 
         DistributionRecord record = distRepo
                 .findByBookCopyBookIdAndStatus(
-                        book.getBookID(), DistributionStatus.DISTRIBUTED)
+                        book.getBookId(), DistributionStatus.DISTRIBUTED)
                 .orElseThrow(() -> new RuntimeException(
                         "No active distribution found for this book"
                 ));
-        boolean alreadyReported = lossRepo.existsByBookCopyBookIdAndResolutionStatus(book.getBookID(),ResolutionStatus.PENDING);
+        boolean alreadyReported = lossRepo.existsByBookCopyBookIdAndResolutionStatus(book.getBookId(),ResolutionStatus.PENDING);
         if(alreadyReported){
             throw new RuntimeException("A loss report for this book exists");
         }

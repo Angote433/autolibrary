@@ -71,7 +71,7 @@ public class BorrowService {
                 ()->new RuntimeException("Book not found")
         );
 
-        BorrowRecord borrowRecord = borrowRepo.findByBookCopyBookIdAndStatus(book.getBookID(),BorrowStatus.ACTIVE)
+        BorrowRecord borrowRecord = borrowRepo.findByBookCopyBookIdAndStatus(book.getBookId(),BorrowStatus.ACTIVE)
                 .orElseThrow(()->new RuntimeException("No active borrow for this book found"));
 
         borrowRecord.setDateReturned(LocalDate.now());
@@ -99,7 +99,7 @@ public class BorrowService {
 
         BorrowRecord record = borrowRepo
                 .findByBookCopyBookIdAndStatus(
-                        book.getBookID(), BorrowStatus.ACTIVE)
+                        book.getBookId(), BorrowStatus.ACTIVE)
                 .orElseThrow(() -> new RuntimeException(
                         "No active borrow found for this book"
                 ));

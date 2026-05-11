@@ -1,5 +1,6 @@
 package com.arnold.autolibrary.controller;
 
+import com.arnold.autolibrary.model.SchoolClass;
 import com.arnold.autolibrary.model.Stream;
 import com.arnold.autolibrary.services.StreamService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +17,9 @@ public class StreamController {
     @Autowired
     StreamService streamService;
     @PostMapping
-    public ResponseEntity<?> createStream(@RequestBody Stream stream){
+    public ResponseEntity<?> createStream(@RequestBody Stream stream ,@RequestParam int classId){
         try{
-            Stream created = streamService.createStream(stream);
+            Stream created = streamService.createStream(stream,classId);
             return ResponseEntity.status(HttpStatus.CREATED).body(created);
         }catch(RuntimeException e){
             return ResponseEntity.badRequest().body(e.getMessage());

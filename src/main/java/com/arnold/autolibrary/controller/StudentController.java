@@ -29,6 +29,7 @@ public class StudentController {
         }
     }
 
+
     //get all active student in a stream-teachers use this on a mobile app to see classlist
     @GetMapping("/stream/{streamId}")
     public ResponseEntity<List<Student>>getStudentsByStream(@PathVariable int streamId){
@@ -56,7 +57,7 @@ public class StudentController {
         }
     }
    @PutMapping("/{id}/deactivate")
-    public ResponseEntity<?>deactivateStudent(@PathVariable  int id){
+    public ResponseEntity<?>deactivateStudent(@PathVariable int id){
         try{
             Student deactivated = studService.deactivateStudent(id);
             return ResponseEntity.ok(deactivated);
@@ -64,6 +65,21 @@ public class StudentController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
    }
+    @PutMapping("/{id}/activate")
+    public ResponseEntity<?>activateStudent(@PathVariable  int id){
+        try{
+            Student activated = studService.activateStudent(id);
+            return ResponseEntity.ok(activated);
+        }catch(RuntimeException e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+    @GetMapping
+    public ResponseEntity<List<Student>>getAllStudents(){
+        List<Student>students = studService.getAllStudents();
+        return ResponseEntity.ok(students);
+    }
+
 
    //check if this admission xists,,quick check
     @GetMapping("exists/{admissionNumber}")
