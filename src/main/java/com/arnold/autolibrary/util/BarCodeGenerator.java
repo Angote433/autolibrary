@@ -15,7 +15,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Component //spring manage this class
-public class QrCodeGenerator {
+public class BarCodeGenerator {
     //generates qr as image and returns it ass byte array-raw data for the qr
     //size in pixels
     public byte[]generateQrCode(String content,int width,int height)throws WriterException,IOException {
