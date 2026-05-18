@@ -114,7 +114,8 @@ public class SecurityConfig {
         CorsConfiguration config = new CorsConfiguration();
 
         // Allow requests from React development server
-        config.setAllowedOrigins(List.of("http://localhost:3000",
+        config.setAllowedOrigins(List.of(git add .
+
                 "https://library-frontend-j4vt.vercel.app"
         ));
 
